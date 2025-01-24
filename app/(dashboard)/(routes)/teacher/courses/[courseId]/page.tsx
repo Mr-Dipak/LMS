@@ -104,13 +104,9 @@ const CourseIdPage: React.FC<Props> = async ({ params }) => {
             <TitleForm initialData={course} courseId={course.id} />
             <DescriptionForm initialData={course} courseId={course.id} />
             <ImageForm initialData={course} courseId={course.id} />
-            <CategoryForm
+            <CategoryForm 
               initialData={course}
               courseId={course.id}
-              options={categories.map((category) => ({
-                label: category.name,
-                value: category.id,
-              }))}
             />
           </div>
           <div className="space-y-6 ">

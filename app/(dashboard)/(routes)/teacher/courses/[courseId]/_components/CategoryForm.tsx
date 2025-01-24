@@ -21,6 +21,11 @@ import { cn } from "@/lib/utils";
 import { Course } from "@prisma/client";
 import { Combobox } from "@/components/ui/combobox";
 
+interface Props {
+  initialData: Course;
+  courseId: string;
+}
+
 const options = [
   {
     label: "Computer Science",
@@ -64,16 +69,14 @@ const options = [
   }
 ];
 
-type Props = {
-  initialData: Course;
-  courseId: string;
-};
-
 const formSchema = z.object({
   categoryId: z.string().min(1),
 });
 
-const CategoryForm: React.FC<Props> = ({ initialData, courseId }) => {
+const CategoryForm = ({
+  initialData,
+  courseId,
+}: Props) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
 
