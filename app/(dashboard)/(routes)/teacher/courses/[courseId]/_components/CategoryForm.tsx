@@ -21,17 +21,59 @@ import { cn } from "@/lib/utils";
 import { Course } from "@prisma/client";
 import { Combobox } from "@/components/ui/combobox";
 
+const options = [
+  {
+    label: "Computer Science",
+    value: "computer_science"
+  },
+  {
+    label: "Music",
+    value: "music"
+  },
+  {
+    label: "Photography",
+    value: "photography"
+  },
+  {
+    label: "Business",
+    value: "business"
+  },
+  {
+    label: "Fitness",
+    value: "fitness"
+  },
+  {
+    label: "Accounting",
+    value: "accounting"
+  },
+  {
+    label: "Language Learning",
+    value: "language"
+  },
+  {
+    label: "Marketing",
+    value: "marketing"
+  },
+  {
+    label: "Personal Development",
+    value: "personal_development"
+  },
+  {
+    label: "Design",
+    value: "design"
+  }
+];
+
 type Props = {
   initialData: Course;
   courseId: string;
-  options: { label: string; value: string }[];
 };
 
 const formSchema = z.object({
   categoryId: z.string().min(1),
 });
 
-const CategoryForm: React.FC<Props> = ({ initialData, courseId, options }) => {
+const CategoryForm: React.FC<Props> = ({ initialData, courseId }) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
 

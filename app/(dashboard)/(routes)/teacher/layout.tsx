@@ -18,6 +18,7 @@ export const metadata: Metadata = {
 
 const TeacherLayout: React.FC<Props> = ({ children }) => {
   const { userId } = auth();
+  console.log(userId);
 
   if (!isTeacher(userId)) return redirect("/");
 
