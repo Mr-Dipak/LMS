@@ -50,7 +50,7 @@ const PriceForm: React.FC<Props> = ({ initialData, courseId }) => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
-      toast.success("Course updated successfully");
+      toast.success("Course price updated");
       toggleEdit();
       router.refresh();
     } catch (error) {
@@ -67,7 +67,7 @@ const PriceForm: React.FC<Props> = ({ initialData, courseId }) => {
             <>Cancel</>
           ) : (
             <>
-              <Pencil className="mr-2 h-4 w-4" />
+              <Pencil className="h-4 w-4 mr-2" />
               Edit price
             </>
           )}
@@ -86,7 +86,7 @@ const PriceForm: React.FC<Props> = ({ initialData, courseId }) => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="mt-4 space-y-4">
+            className="space-y-4 mt-4">
             <FormField
               control={form.control}
               name="price"
@@ -95,9 +95,9 @@ const PriceForm: React.FC<Props> = ({ initialData, courseId }) => {
                   <FormControl>
                     <Input
                       type="number"
-                      step={0.01}
+                      step="0.01"
                       disabled={isSubmitting}
-                      placeholder="Set a price for your course"
+                      placeholder="Set a price for your course in INR"
                       {...field}
                     />
                   </FormControl>
@@ -106,7 +106,7 @@ const PriceForm: React.FC<Props> = ({ initialData, courseId }) => {
               )}
             />
             <div className="flex items-center gap-x-2">
-              <Button disabled={isSubmitting || !isValid} type="submit">
+              <Button disabled={!isValid || isSubmitting} type="submit">
                 Save
               </Button>
             </div>
